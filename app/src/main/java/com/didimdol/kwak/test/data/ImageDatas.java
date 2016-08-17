@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Kwak on 2016-08-14.
  */
 public class ImageDatas {
-    private List<Integer> imagedatas = new ArrayList<>();
+//    private List<Integer> imagedatas = new ArrayList<>();
 //    private List<String> imageNames = new ArrayList<>();
     private List<ImageData> imageDatas = new ArrayList<>();
 
@@ -19,13 +19,13 @@ public class ImageDatas {
         this.imageDatas = imageDatas;
     }
 
-    public List<Integer> getImagedatas() {
-        return imagedatas;
-    }
-
-    public void setImagedatas(List<Integer> imagedatas) {
-        this.imagedatas = imagedatas;
-    }
+//    public List<Integer> getImagedatas() {
+//        return imagedatas;
+//    }
+//
+//    public void setImagedatas(List<Integer> imagedatas) {
+//        this.imagedatas = imagedatas;
+//    }
 
 //    public List<String> getImageNames() {
 //        return imageNames;

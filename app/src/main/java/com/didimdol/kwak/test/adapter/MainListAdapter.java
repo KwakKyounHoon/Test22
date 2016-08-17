@@ -1,5 +1,6 @@
 package com.didimdol.kwak.test.adapter;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,12 +9,10 @@ import android.view.ViewGroup;
 
 import com.didimdol.kwak.test.R;
 import com.didimdol.kwak.test.data.MainData;
-import com.didimdol.kwak.test.view.AirBnBCommendViewHoler;
 import com.didimdol.kwak.test.view.CategoryViewHolder;
 import com.didimdol.kwak.test.view.HostRecommendViewHolder;
-import com.didimdol.kwak.test.view.SearchSliderViewHolder;
+import com.didimdol.kwak.test.view.ImageSliderViewHolder;
 import com.didimdol.kwak.test.view.MainTextViewHolder;
-import com.didimdol.kwak.test.view.WeekComendViewHolder;
 
 
 /**
@@ -35,9 +34,19 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private static final int VIEW_TYPE_AIRBNBCOMMENT = 4;
 
     FragmentManager fragmentManager;
+    Context context;
 
     public MainListAdapter(FragmentManager fragmentManager) {
         this.fragmentManager = fragmentManager;
+    }
+
+    public MainListAdapter(FragmentManager fragmentManager, Context context) {
+        this.context = context;
+        this.fragmentManager = fragmentManager;
+    }
+
+    public MainListAdapter(Context context) {
+        this.context = context;
     }
 
     public void setmainData(MainData mainData) {
@@ -111,7 +120,8 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             case VIEW_TYPE_SEARCH : {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_searchimage_slider, parent, false);
-                SearchSliderViewHolder holder = new SearchSliderViewHolder(view,fragmentManager);
+//                SearchSliderViewHolder holder = new SearchSliderViewHolder(view,fragmentManager);
+                ImageSliderViewHolder holder = new ImageSliderViewHolder(view, context);
                 return holder;
             }
             case VIEW_TYPE_CATEGORY_TITLE_SEARCH : {
@@ -130,8 +140,10 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return holder;
             }
             case VIEW_TYPE_WEEKCOMMEND : {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_weekcommend_slider, parent, false);
-                WeekComendViewHolder holder = new WeekComendViewHolder(view,fragmentManager);
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_weekcommend_slider, parent, false);
+//                WeekComendViewHolder holder = new WeekComendViewHolder(view,fragmentManager);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_searchimage_slider, parent, false);
+                ImageSliderViewHolder holder = new ImageSliderViewHolder(view, context);
                 return holder;
             }
             case VIEW_TYPE_CATEGORY_TITLE_WEEKCOMMEND : {
@@ -140,8 +152,10 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return holder;
             }
             case VIEW_TYPE_AIRBNBCOMMENT : {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_airbnbcommend_slider, parent, false);
-                AirBnBCommendViewHoler holder = new AirBnBCommendViewHoler(view,fragmentManager);
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_airbnbcommend_slider, parent, false);
+//                AirBnBCommendViewHoler holder = new AirBnBCommendViewHoler(view,fragmentManager);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_searchimage_slider, parent, false);
+                ImageSliderViewHolder holder = new ImageSliderViewHolder(view, context);
                 return holder;
             }
             case VIEW_TYPE_CATEGORY_TITLE_AIRBNBCOMMENT : {
@@ -169,7 +183,8 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             position--;
             if (position == 0) {
-                SearchSliderViewHolder isvh = (SearchSliderViewHolder)holder;
+//                SearchSliderViewHolder isvh = (SearchSliderViewHolder)holder;
+                ImageSliderViewHolder isvh = (ImageSliderViewHolder)holder;
                 isvh.setImageData(mainData.getSearchImage());
                 return ;
             }
@@ -197,7 +212,8 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             position--;
             if (position == 0) {
-                WeekComendViewHolder wcvh = (WeekComendViewHolder)holder;
+//                WeekComendViewHolder wcvh = (WeekComendViewHolder)holder;
+                ImageSliderViewHolder wcvh = (ImageSliderViewHolder)holder;
                 wcvh.setImageData(mainData.getWeekCommend());
                 return ;
             }
@@ -211,7 +227,8 @@ public class MainListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             position--;
             if (position == 0) {
-                AirBnBCommendViewHoler wcvh = (AirBnBCommendViewHoler)holder;
+//                AirBnBCommendViewHoler wcvh = (AirBnBCommendViewHoler)holder;
+                ImageSliderViewHolder wcvh = (ImageSliderViewHolder)holder;
                 wcvh.setImageData(mainData.getAirBnBCommend());
                 return ;
             }

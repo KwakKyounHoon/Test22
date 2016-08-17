@@ -8,4 +8,7 @@
     <string name="fifth_category">인기 여행지</string>
     <string name="sixth_category">가이드북</string>
     <string name="seventh_category">친구 초대하기</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
