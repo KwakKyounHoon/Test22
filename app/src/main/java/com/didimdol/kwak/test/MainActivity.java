@@ -14,7 +14,8 @@ import com.didimdol.kwak.test.fragment.MainFragment;
 import com.didimdol.kwak.test.fragment.MenuFragment;
 import com.didimdol.kwak.test.fragment.MessageFragment;
 
-public class MainActivity extends AppCompatActivity implements MenuFragment.OnMenuSelectListener{
+public class MainActivity extends AppCompatActivity implements MenuFragment.OnMenuSelectListener
+,MainFragment.OnMainFragmentSelectListener{
 
 
 
@@ -131,6 +132,13 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
                 return;
         }
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void onMainFragmentSelectListner(View view) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, MainFragment.newInstance())
+                .commit();
     }
 
 //    @Override

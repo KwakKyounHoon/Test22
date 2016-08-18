@@ -1,7 +1,7 @@
 package com.didimdol.kwak.test.fragment;
 
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -11,29 +11,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.didimdol.kwak.test.ContentActivity;
 import com.didimdol.kwak.test.R;
 import com.didimdol.kwak.test.adapter.MainListAdapter;
 import com.didimdol.kwak.test.data.AirBnBCommend;
+import com.didimdol.kwak.test.data.GuideData;
 import com.didimdol.kwak.test.data.HostCommend;
 import com.didimdol.kwak.test.data.ImageData;
 import com.didimdol.kwak.test.data.MainData;
+import com.didimdol.kwak.test.data.PopularData;
 import com.didimdol.kwak.test.data.SearchImage;
 import com.didimdol.kwak.test.data.WeekCommend;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MainFragment extends Fragment {
 
     RecyclerView listview;
     MainListAdapter mAdapter;
 
-    private OnFragmentInteractionListener mListener;
+    private OnMainFragmentSelectListener mListener;
 
     public MainFragment() {
         // Required empty public constructor
@@ -58,7 +53,7 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
@@ -69,15 +64,20 @@ public class MainFragment extends Fragment {
         listview.setAdapter(mAdapter);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         listview.setLayoutManager(manager);
+        mAdapter.setOnAdapterItemClickListener(new MainListAdapter.OnAdapterItemClickLIstener() {
+            @Override
+            public void onAdapterItemClick(View view, ImageData imageData) {
+                Intent intent = new Intent(getContext(), ContentActivity.class);
+                startActivity(intent);
+            }
+        });
         initData();
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public interface OnMainFragmentSelectListener {
+        // TODO: Update argument type and name
+        void onMainFragmentSelectListner(View view);
     }
 
     @Override
@@ -97,20 +97,6 @@ public class MainFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 
     private void initData() {
         MainData mainData = new MainData();
@@ -169,10 +155,61 @@ public class MainFragment extends Fragment {
 
         mainData.setAirBnBCommend(airBnBCommend);
 
+        PopularData popularData = new PopularData();
+
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.madrid);
+        imageData.setImageName("마드리드");
+        popularData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.banis);
+        imageData.setImageName("베니스");
+        popularData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.milano);
+        imageData.setImageName("밀라노");
+        popularData.getImageDatas().add(imageData);
+
+        mainData.setPopularData(popularData);
+
+        GuideData guideData = new GuideData();
+
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.sanfran);
+        imageData.setImageName("샌프란시스코");
+        guideData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.nuyok);
+        imageData.setImageName("뉴욕");
+        guideData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.randon2);
+        imageData.setImageName("런던");
+        guideData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.paris2);
+        imageData.setImageName("파리");
+        guideData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.balen);
+        imageData.setImageName("베를린");
+        guideData.getImageDatas().add(imageData);
+        imageData = new ImageData();
+        imageData.setImageId(R.drawable.los);
+        imageData.setImageName("로스엔젤레스");
+        guideData.getImageDatas().add(imageData);
+
+        mainData.setGuideData(guideData);
+
         HostCommend hostCommend = new HostCommend();
         hostCommend.setImage(ContextCompat.getDrawable(getContext(),R.drawable.test));
         hostCommend.setRecomendText("여유 공간을 임대하여 수입을 올리세요.");
         mainData.setHostCommend(hostCommend);
+
+        hostCommend = new HostCommend();
+        hostCommend.setImage(ContextCompat.getDrawable(getContext(),R.drawable.test2));
+        hostCommend.setRecomendText("여행 크레딧을 받으세요!.");
+        mainData.setHostCommend2(hostCommend);
 
         mAdapter.setmainData(mainData);
     }

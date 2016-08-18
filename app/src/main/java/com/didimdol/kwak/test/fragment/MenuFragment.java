@@ -100,7 +100,6 @@ public class MenuFragment extends Fragment {
         mAdapter.setOnAdapterItemClickListener(new MenuAdapter.OnAdapterItemClickLIstener() {
             @Override
             public void onAdapterItemClick(View view, Menuitem menuitem, int position) {
-                Toast.makeText(getActivity(), "icon : " + menuitem.getIconName(), Toast.LENGTH_SHORT).show();
                 mListener.onMenuSelected(menuitem.getMenuCode());
             }
         });
