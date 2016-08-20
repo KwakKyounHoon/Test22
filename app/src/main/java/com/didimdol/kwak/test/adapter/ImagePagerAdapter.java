@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ImagePagerAdapter extends PagerAdapter implements ImagePagerView.OnItemClickListener {
     List<ImageData> items = new ArrayList<>();
-    ImageDatas datas = new ImageDatas();
+
 
     Context mContext;
 

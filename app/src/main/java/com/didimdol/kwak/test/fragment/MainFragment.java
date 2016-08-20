@@ -63,6 +63,8 @@ public class MainFragment extends Fragment {
 
         listview.setAdapter(mAdapter);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+//        DividerItemDecoration decoration = new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL);
+//        listview.addItemDecoration(decoration);
         listview.setLayoutManager(manager);
         mAdapter.setOnAdapterItemClickListener(new MainListAdapter.OnAdapterItemClickLIstener() {
             @Override
