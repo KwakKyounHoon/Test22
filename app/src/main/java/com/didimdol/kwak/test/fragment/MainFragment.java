@@ -63,13 +63,15 @@ public class MainFragment extends Fragment {
 
         listview.setAdapter(mAdapter);
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        listview.setLayoutManager(manager);
 //        DividerItemDecoration decoration = new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL);
 //        listview.addItemDecoration(decoration);
-        listview.setLayoutManager(manager);
         mAdapter.setOnAdapterItemClickListener(new MainListAdapter.OnAdapterItemClickLIstener() {
             @Override
             public void onAdapterItemClick(View view, ImageData imageData) {
                 Intent intent = new Intent(getContext(), ContentActivity.class);
+                intent.putExtra("imageid",imageData.getImageId());
+                intent.putExtra("cityname",imageData.getImageName());
                 startActivity(intent);
             }
         });
